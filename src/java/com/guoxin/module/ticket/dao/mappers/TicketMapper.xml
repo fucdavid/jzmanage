@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guoxin.module.ticket.dao.ITicketDao">
+	
+	<resultMap id="ticketResultMap" type="Ticket">
+        <result property="ticketId" column="ticketId"/>
+        <result property="type" column="type"/>
+        <result property="sum" column="sum"/>
+        <result property="clientd" column="clientd"/>
+        <result property="startTime" column="startTime"/>
+        <result property="endTime" column="endTime"/>
+        <result property="isUse" column="isUse"/>
+        <result property="deleteFlag" column="deleteFlag"/>
+        <result property="ticketCode" column="ticketCode"/>
+        <result property="updateTime" column="updateTime"/>
+	</resultMap>
+	
+	<select id="getTicketById" resultMap="ticketResultMap" parameterType="java.lang.Integer">
+        SELECT * FROM ticket WHERE ticketId = #{value}
+    </select>
+    
+	<insert id="insertTicket" parameterType="Ticket" useGeneratedKeys="true" keyProperty="ticketId">
+		INSERT INTO ticket (
+    		ticketId
+            <if test="type != null">,type</if>
+            <if test="sum != null">,sum</if>
+            <if test="clientd != null">,clientd</if>
+            <if test="startTime != null">,startTime</if>
+            <if test="endTime != null">,endTime</if>
+            <if test="isUse != null">,isUse</if>
+            <if test="deleteFlag != null">,deleteFlag</if>
+            <if test="ticketCode != null">,ticketCode</if>
+            <if test="updateTime != null">,updateTime</if>
+		)
+		VALUES
+		(
+		    #{ticketId}
+            <if test="type != null">,#{type}</if>
+            <if test="sum != null">,#{sum}</if>
+            <if test="clientd != null">,#{clientd}</if>
+            <if test="startTime != null">,#{startTime}</if>
+            <if test="endTime != null">,#{endTime}</if>
+            <if test="isUse != null">,#{isUse}</if>
+            <if test="deleteFlag != null">,#{deleteFlag}</if>
+            <if test="ticketCode != null">,#{ticketCode}</if>
+            <if test="updateTime != null">,#{updateTime}</if>
+		)
+	</insert>
+	
+	<update id="updateTicket" parameterType="Ticket">
+		UPDATE ticket
+		<set>
+            <if test="type != null">type = #{type},</if>
+            <if test="sum != null">sum = #{sum},</if>
+            <if test="clientd != null">clientd = #{clientd},</if>
+            <if test="startTime != null">startTime = #{startTime},</if>
+            <if test="endTime != null">endTime = #{endTime},</if>
+            <if test="isUse != null">isUse = #{isUse},</if>
+            <if test="deleteFlag != null">deleteFlag = #{deleteFlag},</if>
+            <if test="ticketCode != null">ticketCode = #{ticketCode},</if>
+            <if test="updateTime != null">updateTime = #{updateTime},</if>
+		</set>
+		WHERE ticketId = #{ticketId}
+	</update>
+	
+	<delete id="deleteTicketById" parameterType="java.lang.Integer">
+		DELETE FROM ticket WHERE ticketId = #{value}
+	</delete>
+	
+	<select id="getTicketList" resultMap="ticketResultMap" parameterType="Ticket">
+		SELECT A.* FROM ticket A
+		<where>
+            <if test="type != null">AND A.type like CONCAT('%',#{type},'%')</if>
+            <if test="sum != null">AND A.sum = #{sum}</if>
+            <if test="clientd != null">AND A.clientd = #{clientd}</if>
+            <if test="startTime != null">AND A.startTime = #{startTime}</if>
+            <if test="endTime != null">AND A.endTime = #{endTime}</if>
+            <if test="isUse != null">AND A.isUse = #{isUse}</if>
+            <if test="deleteFlag != null">AND A.deleteFlag = #{deleteFlag}</if>
+            <if test="ticketCode != null">AND A.ticketCode like CONCAT('%',#{ticketCode},'%')</if>
+            <if test="updateTime != null">AND A.updateTime = #{updateTime}</if>
+		</where>
+	</select>
+	
+	<select id="getTicketPageList" resultMap="ticketResultMap" parameterType="TicketCondition">
+	    SELECT T1.* FROM ticket T1, 
+        (SELECT A.ticketId FROM ticket A
+        <where>
+            <if test="ticket.type != null">AND A.type like CONCAT('%',#{ticket.type},'%')</if>
+            <if test="ticket.sum != null">AND A.sum = #{ticket.sum}</if>
+            <if test="ticket.clientd != null">AND A.clientd = #{ticket.clientd}</if>
+            <if test="ticket.startTime != null">AND A.startTime = #{ticket.startTime}</if>
+            <if test="ticket.endTime != null">AND A.endTime = #{ticket.endTime}</if>
+            <if test="ticket.isUse != null">AND A.isUse = #{ticket.isUse}</if>
+            <if test="ticket.deleteFlag != null">AND A.deleteFlag = #{ticket.deleteFlag}</if>
+            <if test="ticket.ticketCode != null">AND A.ticketCode like CONCAT('%',#{ticket.ticketCode},'%')</if>
+            <if test="ticket.updateTime != null">AND A.updateTime = #{ticket.updateTime}</if>
+        </where>
+        <if test="orderBys != null">
+          order by ${orderBys} 
+        </if>
+        <if test="limit != null">
+          limit #{limit},#{offset}
+        </if>
+        ) T2 WHERE T1.ticketId = T2.ticketId
+    </select>
+	
+	<select id="getTicketCount" resultType="java.lang.Integer" parameterType="TicketCondition">
+		SELECT COUNT(*) FROM ticket A
+		<where>
+            <if test="ticket.type != null">AND A.type like CONCAT('%',#{ticket.type},'%')</if>
+            <if test="ticket.sum != null">AND A.sum = #{ticket.sum}</if>
+            <if test="ticket.clientd != null">AND A.clientd = #{ticket.clientd}</if>
+            <if test="ticket.startTime != null">AND A.startTime = #{ticket.startTime}</if>
+            <if test="ticket.endTime != null">AND A.endTime = #{ticket.endTime}</if>
+            <if test="ticket.isUse != null">AND A.isUse = #{ticket.isUse}</if>
+            <if test="ticket.deleteFlag != null">AND A.deleteFlag = #{ticket.deleteFlag}</if>
+            <if test="ticket.ticketCode != null">AND A.ticketCode like CONCAT('%',#{ticket.ticketCode},'%')</if>
+            <if test="ticket.updateTime != null">AND A.updateTime = #{ticket.updateTime}</if>
+		</where>
+	</select>
+	
+</mapper>

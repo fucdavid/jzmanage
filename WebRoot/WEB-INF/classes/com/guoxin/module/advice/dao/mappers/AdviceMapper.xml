@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guoxin.module.advice.dao.IAdviceDao">
+	
+	<resultMap id="adviceResultMap" type="Advice">
+        <result property="adviceId" column="adviceId"/>
+        <result property="content" column="content"/>
+        <result property="userId" column="userId"/>
+        <result property="deleteFlag" column="deleteFlag"/>
+	</resultMap>
+	
+	<select id="getAdviceById" resultMap="adviceResultMap" parameterType="java.lang.Integer">
+        SELECT * FROM advice WHERE adviceId = #{value}
+    </select>
+    
+	<insert id="insertAdvice" parameterType="Advice" useGeneratedKeys="true" keyProperty="adviceId">
+		INSERT INTO advice (
+    		adviceId
+            <if test="content != null">,content</if>
+            <if test="userId != null">,userId</if>
+            <if test="deleteFlag != null">,deleteFlag</if>
+		)
+		VALUES
+		(
+		    #{adviceId}
+            <if test="content != null">,#{content}</if>
+            <if test="userId != null">,#{userId}</if>
+            <if test="deleteFlag != null">,#{deleteFlag}</if>
+		)
+	</insert>
+	
+	<update id="updateAdvice" parameterType="Advice">
+		UPDATE advice
+		<set>
+            <if test="content != null">content = #{content},</if>
+            <if test="userId != null">userId = #{userId},</if>
+            <if test="deleteFlag != null">deleteFlag = #{deleteFlag},</if>
+		</set>
+		WHERE adviceId = #{adviceId}
+	</update>
+	
+	<delete id="deleteAdviceById" parameterType="java.lang.Integer">
+		DELETE FROM advice WHERE adviceId = #{value}
+	</delete>
+	
+	<select id="getAdviceList" resultMap="adviceResultMap" parameterType="Advice">
+		SELECT A.* FROM advice A
+		<where>
+            <if test="content != null">AND A.content like CONCAT('%',#{content},'%')</if>
+            <if test="userId != null">AND A.userId = #{userId}</if>
+            <if test="deleteFlag != null">AND A.deleteFlag = #{deleteFlag}</if>
+		</where>
+	</select>
+	
+	<select id="getAdvicePageList" resultMap="adviceResultMap" parameterType="AdviceCondition">
+	    SELECT T1.* FROM advice T1, 
+        (SELECT A.adviceId FROM advice A
+        <where>
+            <if test="advice.content != null">AND A.content like CONCAT('%',#{advice.content},'%')</if>
+            <if test="advice.userId != null">AND A.userId = #{advice.userId}</if>
+            <if test="advice.deleteFlag != null">AND A.deleteFlag = #{advice.deleteFlag}</if>
+        </where>
+        <if test="orderBys != null">
+          order by ${orderBys} 
+        </if>
+        <if test="limit != null">
+          limit #{limit},#{offset}
+        </if>
+        ) T2 WHERE T1.adviceId = T2.adviceId
+    </select>
+	
+	<select id="getAdviceCount" resultType="java.lang.Integer" parameterType="AdviceCondition">
+		SELECT COUNT(*) FROM advice A
+		<where>
+            <if test="advice.content != null">AND A.content like CONCAT('%',#{advice.content},'%')</if>
+            <if test="advice.userId != null">AND A.userId = #{advice.userId}</if>
+            <if test="advice.deleteFlag != null">AND A.deleteFlag = #{advice.deleteFlag}</if>
+		</where>
+	</select>
+	
+</mapper>

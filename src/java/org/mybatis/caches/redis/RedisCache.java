@@ -1,0 +1,119 @@
+/*
+ *    Copyright 2015 The original author or authors.
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
+package org.mybatis.caches.redis;
+
+import java.util.Map;
+import java.util.concurrent.locks.ReadWriteLock;
+
+import org.apache.ibatis.cache.Cache;
+
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+
+/**
+ * Cache adapter for Redis.
+ * 
+ * @author Eduardo Macarron
+ */
+public final class RedisCache implements Cache {
+
+    private final ReadWriteLock readWriteLock = new DummyReadWriteLock();
+
+    private String id;
+
+    private static JedisPool pool;
+
+    public RedisCache(final String id) {
+        if (id == null) {
+            throw new IllegalArgumentException("Cache instances require an ID");
+        }
+        this.id = id;
+        ConfigWithHost conf = RedisConfigurationBuilder.getInstance().parseConfiguration();
+        if(conf.getPass() == null){
+            pool = new JedisPool(conf, conf.getHost(), conf.getPort(), conf.getTimeout());
+        }else{
+            pool = new JedisPool(conf, conf.getHost(), conf.getPort(), conf.getTimeout(), conf.getPass());
+        }
+    }
+
+    private Object execute(RedisCallback callback) {
+        Jedis jedis = pool.getResource();
+        jedis.select(1);
+        try {
+            return callback.doWithRedis(jedis);
+        } finally {
+            jedis.close();
+        }
+    }
+
+    public String getId() {
+        return this.id;
+    }
+
+    public int getSize() {
+        return (Integer) execute(new RedisCallback() {
+            public Object doWithRedis(Jedis jedis) {
+                Map<byte[], byte[]> result = jedis.hgetAll(id.toString().getBytes());
+                return result.size();
+            }
+        });
+    }
+
+    public void putObject(final Object key, final Object value) {
+        execute(new RedisCallback() {
+            public Object doWithRedis(Jedis jedis) {
+                jedis.hset(id.toString().getBytes(), key.toString().getBytes(), SerializeUtil.serialize(value));
+                return null;
+            }
+        });
+    }
+
+    public Object getObject(final Object key) {
+        return execute(new RedisCallback() {
+            public Object doWithRedis(Jedis jedis) {
+                return SerializeUtil.unserialize(jedis.hget(id.toString().getBytes(), key.toString().getBytes()));
+            }
+        });
+    }
+
+    public Object removeObject(final Object key) {
+        return execute(new RedisCallback() {
+            public Object doWithRedis(Jedis jedis) {
+                return jedis.hdel(id.toString(), key.toString());
+            }
+        });
+    }
+
+    public void clear() {
+        execute(new RedisCallback() {
+            public Object doWithRedis(Jedis jedis) {
+                jedis.del(id.toString());
+                return null;
+            }
+        });
+
+    }
+
+    public ReadWriteLock getReadWriteLock() {
+        return readWriteLock;
+    }
+
+    @Override
+    public String toString() {
+        return "Redis {" + id + "}";
+    }
+
+}

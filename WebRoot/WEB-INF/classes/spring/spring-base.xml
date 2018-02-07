@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:mvc="http://www.springframework.org/schema/mvc" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd 
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-4.2.xsd 
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
+           
+	<!-- 加载 jdbc.properties -->
+	<context:property-placeholder location="classpath:jdbc.properties" />
+	
+	<!-- 利用druid连接池配置数据源对象 -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close"> 
+      <!-- 基本属性 url、user、password -->
+      <property name="url" value="${datasource.url}" />
+      <property name="username" value="${datasource.username}" />
+      <property name="password" value="${datasource.password}" />
+      <!-- 初始化连接数量 -->
+      <property name="initialSize" value="30" />
+      <!-- 最小空闲连接数 -->
+      <property name="minIdle" value="30" />
+      <!-- 最大并发连接数 -->
+      <property name="maxActive" value="200" />
+      <!-- 配置获取连接等待超时的时间 -->
+      <property name="maxWait" value="60000" />
+      <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+      <property name="timeBetweenEvictionRunsMillis" value="60000" />
+      <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+      <property name="minEvictableIdleTimeMillis" value="300000" />
+      <!-- 用来检测连接是否有效的sql，要求是一个查询语句--> 
+      <property name="validationQuery" value="SELECT 'x'" />
+      <!-- 申请连接的时候检测 -->
+      <property name="testWhileIdle" value="true" />
+      <!-- 申请连接时执行validationQuery检测连接是否有效，配置为true会降低性能 -->
+      <property name="testOnBorrow" value="false" />
+      <!-- 归还连接时执行validationQuery检测连接是否有效，配置为true会降低性能  -->
+      <property name="testOnReturn" value="false" />
+      <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+      <property name="poolPreparedStatements" value="true" />
+      <property name="maxPoolPreparedStatementPerConnectionSize" value="20" />
+      <!--属性类型是字符串，通过别名的方式配置扩展插件，
+                            常用的插件有：监控统计用的filter:stat                 
+                            日志用的filter:log4j
+                            防御SQL注入的filter:wall 
+      <property name="filters" value="stat,log4j" />-->
+    </bean>
+  
+	<!-- Spring、MyBatis的整合，需要在 Spring 应用上下文中定义至少两样东西：一个SqlSessionFactory和至少一个数据映射器类（UserMapper->iocContext.xml）。-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">   
+	    <property name="configLocation" value="classpath:mybatis/SqlMapConfig.xml" />   
+	    <property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<!-- 自动注入dao层 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+        <property name="basePackage" value="com.guoxin.module.*.dao" />
+    </bean>
+    
+	<!-- 事务管理start -->
+    <bean id="springTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+    <bean id="transactionInterceptor" class="org.springframework.transaction.interceptor.TransactionInterceptor">
+        <property name="transactionManager" ref="springTransactionManager" />
+        <property name="transactionAttributes">
+            <props>
+                <prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+                <prop key="list*">PROPAGATION_REQUIRED,readOnly</prop>
+                <prop key="find*">PROPAGATION_REQUIRED,readOnly</prop>
+                <prop key="show*">PROPAGATION_REQUIRED,readOnly</prop>
+                <prop key="*">PROPAGATION_REQUIRED</prop>
+            </props>
+        </property>
+    </bean>
+    <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+        <property name="beanNames">
+            <list>
+                <value>*Service</value>
+            </list>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>transactionInterceptor</value>
+            </list>
+        </property>
+    </bean>
+    <!-- 事务管理end -->
+    
+</beans>

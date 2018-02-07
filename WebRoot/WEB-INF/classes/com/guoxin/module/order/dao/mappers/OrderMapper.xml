@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guoxin.module.order.dao.IOrderDao">
+	
+	<resultMap id="orderResultMap" type="Order">
+        <result property="orderId" column="orderId"/>
+        <result property="orderCode" column="orderCode"/>
+        <result property="clientId" column="clientId"/>
+        <result property="updateTime" column="updateTime"/>
+        <result property="comment" column="comment"/>
+        <result property="state" column="state"/>
+        <result property="discount" column="discount"/>
+        <result property="account" column="account"/>
+        <result property="deleteFlag" column="deleteFlag"/>
+        <result property="peopleNum" column="peopleNum"/>
+        <result property="area" column="area"/>
+        <result property="detailId" column="detailId"/>
+        <result property="time" column="time"/>
+        <result property="paymoney" column="paymoney"/>
+        <result property="addressId" column="addressId"/>
+        
+        <result property="telephone" column="telephone"/>
+        <result property="detailName" column="detailName"/>
+        <result property="money" column="money"/>
+        <result property="address" column="address"/>
+	</resultMap>
+	
+	<select id="getOrderById" resultMap="orderResultMap" parameterType="java.lang.Integer">
+        SELECT * FROM order_info WHERE orderId = #{value}
+    </select>
+    
+	<insert id="insertOrder" parameterType="Order" useGeneratedKeys="true" keyProperty="orderId">
+		INSERT INTO order_info (
+    		orderId
+            <if test="orderCode != null">,orderCode</if>
+            <if test="clientId != null">,clientId</if>
+            <if test="updateTime != null">,updateTime</if>
+            <if test="comment != null">,comment</if>
+            <if test="state != null">,state</if>
+            <if test="discount != null">,discount</if>
+            <if test="account != null">,account</if>
+            <if test="deleteFlag != null">,deleteFlag</if>
+            <if test="peopleNum != null">,peopleNum</if>
+            <if test="area != null">,area</if>
+            <if test="detailId != null">,detailId</if>
+            <if test="time != null">,time</if>
+            <if test="paymoney != null">,paymoney</if>
+            <if test="telephone != null">,telephone</if>
+            <if test="detailName != null">,detailName</if>
+            <if test="money != null">,money</if>
+            <if test="addressId != null">,addressId</if>
+		)
+		VALUES
+		(
+		    #{orderId}
+            <if test="orderCode != null">,#{orderCode}</if>
+            <if test="clientId != null">,#{clientId}</if>
+            <if test="updateTime != null">,#{updateTime}</if>
+            <if test="comment != null">,#{comment}</if>
+            <if test="state != null">,#{state}</if>
+            <if test="discount != null">,#{discount}</if>
+            <if test="account != null">,#{account}</if>
+            <if test="deleteFlag != null">,#{deleteFlag}</if>
+            <if test="peopleNum != null">,#{peopleNum}</if>
+            <if test="area != null">,#{area}</if>
+            <if test="detailId != null">,#{detailId}</if>
+            <if test="time != null">,#{time}</if>
+            <if test="paymoney != null">,#{paymoney}</if>
+            <if test="telephone != null">,#{telephone}</if>
+            <if test="detailName != null">,#{detailName}</if>
+            <if test="money != null">,#{money}</if>
+            <if test="addressId != null">,#{addressId}</if>
+		)
+	</insert>
+	
+	<update id="updateOrder" parameterType="Order">
+		UPDATE order_info
+		<set>
+            <if test="orderCode != null">orderCode = #{orderCode},</if>
+            <if test="clientId != null">clientId = #{clientId},</if>
+            <if test="updateTime != null">updateTime = #{updateTime},</if>
+            <if test="comment != null">comment = #{comment},</if>
+            <if test="state != null">state = #{state},</if>
+            <if test="discount != null">discount = #{discount},</if>
+            <if test="account != null">account = #{account},</if>
+            <if test="deleteFlag != null">deleteFlag = #{deleteFlag},</if>
+            <if test="peopleNum != null">peopleNum = #{peopleNum},</if>
+            <if test="area != null">area = #{area},</if>
+            <if test="detailId != null">detailId = #{detailId},</if>
+            <if test="time != null">time = #{time},</if>
+            <if test="time != null">paymoney = #{paymoney},</if>
+            <if test="telephone != null">telephone = #{telephone},</if>
+            <if test="detailName != null">detailName = #{detailName},</if>
+            <if test="money != null">money = #{money},</if>
+            <if test="addressId != null">addressId = #{addressId},</if>
+		</set>
+		WHERE orderId = #{orderId}
+	</update>
+	
+	<delete id="deleteOrderById" parameterType="java.lang.Integer">
+		DELETE FROM order_info WHERE orderId = #{value}
+	</delete>
+	
+	<select id="getOrderList" resultMap="orderResultMap" parameterType="Order">
+		SELECT A.* FROM order_info A
+		<where>
+            <if test="orderCode != null">AND A.orderCode = #{orderCode}</if>
+            <if test="clientId != null">AND A.clientId = #{clientId}</if>
+            <if test="updateTime != null">AND A.updateTime = #{updateTime}</if>
+            <if test="comment != null">AND A.comment like CONCAT('%',#{comment},'%')</if>
+            <if test="state != null">AND A.state = #{state}</if>
+            <if test="discount != null">AND A.discount = #{discount}</if>
+            <if test="account != null">AND A.account = #{account}</if>
+            <if test="deleteFlag != null">AND A.deleteFlag = #{deleteFlag}</if>
+            <if test="peopleNum != null">AND A.peopleNum = #{peopleNum}</if>
+            <if test="area != null">AND A.area = #{area}</if>
+            <if test="detailId != null">AND A.detailId = #{detailId}</if>
+            <if test="time != null">AND A.time = #{time}</if>
+            <if test="paymoney != null">AND A.paymoney = #{paymoney}</if>
+            <if test="telephone != null">A.telephone = #{telephone}</if>
+            <if test="detailName != null">A.detailName = #{detailName}</if>
+            <if test="money != null">A.money = #{money}</if>
+            <if test="addressId != null">A.addressId = #{addressId}</if>
+		</where>
+	</select>
+	
+	<select id="getOrderPageList" resultMap="orderResultMap" parameterType="OrderCondition">
+	    SELECT A.*,B.telephone,C.detailName,C.money,D.address FROM order_info A,client_info B,service_detail C,address_info D
+        <where>
+        	A.clientId = B.clientId AND A.detailId = C.detailId AND D.addressId = A.addressId
+        	<if test="order.orderId != null">AND A.orderId = #{order.orderId}</if>
+            <if test="order.orderCode != null">AND A.orderCode = #{order.orderCode}</if>
+            <if test="order.clientId != null">AND A.clientId = #{order.clientId}</if>
+            <if test="order.updateTime != null">AND A.updateTime = #{order.updateTime}</if>
+            <if test="order.comment != null">AND A.comment like CONCAT('%',#{order.comment},'%')</if>
+            <if test="order.state != null">AND A.state = #{order.state}</if>
+            <if test="order.discount != null">AND A.discount = #{order.discount}</if>
+            <if test="order.account != null">AND A.account = #{order.account}</if>
+            <if test="order.deleteFlag != null">AND A.deleteFlag = #{order.deleteFlag}</if>
+            <if test="order.peopleNum != null">AND A.peopleNum = #{order.peopleNum}</if>
+            <if test="order.area != null">AND A.area = #{order.area}</if>
+            <if test="order.detailId != null">AND A.detailId = #{order.detailId}</if>
+            <if test="order.time != null">AND A.time = #{order.time}</if>
+            <if test="order.paymoney != null">AND A.paymoney = #{order.paymoney}</if>
+            <if test="order.telephone != null">AND A.telephone = #{order.telephone}</if>
+            <if test="order.detailName != null">AND A.detailName = #{order.detailName}</if>
+            <if test="order.money != null">AND A.money = #{order.money}</if>
+            <if test="order.addressId != null">AND A.addressId = #{order.addressId}</if>
+        </where>
+         <if test="orderBys != null">
+          ORDER BY ${orderBys} 
+        </if>
+        <if test="limit != null">
+          limit #{limit},#{offset}
+        </if>
+    </select>
+	
+	<select id="getOrderCount" resultType="java.lang.Integer" parameterType="OrderCondition">
+		SELECT COUNT(*) FROM order_info A
+		<where>
+            <if test="order.orderCode != null">AND A.orderCode like CONCAT('%',#{order.orderCode},'%')</if>
+            <if test="order.clientId != null">AND A.clientId = #{order.clientId}</if>
+            <if test="order.updateTime != null">AND A.updateTime = #{order.updateTime}</if>
+            <if test="order.comment != null">AND A.comment like CONCAT('%',#{order.comment},'%')</if>
+            <if test="order.state != null">AND A.state = #{order.state}</if>
+            <if test="order.discount != null">AND A.discount = #{order.discount}</if>
+            <if test="order.account != null">AND A.account = #{order.account}</if>
+            <if test="order.deleteFlag != null">AND A.deleteFlag = #{order.deleteFlag}</if>
+            <if test="order.peopleNum != null">AND A.peopleNum = #{order.peopleNum}</if>
+            <if test="order.area != null">AND A.area = #{order.area}</if>
+            <if test="order.detailId != null">AND A.detailId = #{order.detailId}</if>
+            <if test="order.time != null">AND A.time = #{order.time}</if>
+            <if test="order.paymoney != null">AND A.paymoney = #{order.paymoney}</if>
+            <if test="order.telephone != null">AND A.telephone = #{order.telephone}</if>
+            <if test="order.detailName != null">AND A.detailName = #{order.detailName}</if>
+            <if test="order.money != null">AND A.money = #{order.money}</if>
+            <if test="order.addressId != null">AND A.addressId = #{order.addressId}</if>
+		</where>
+	</select>
+	
+</mapper>

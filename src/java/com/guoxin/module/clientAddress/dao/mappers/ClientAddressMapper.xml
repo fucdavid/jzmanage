@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guoxin.module.clientAddress.dao.IClientAddressDao">
+	
+	<resultMap id="clientAddressResultMap" type="ClientAddress">
+        <result property="addressId" column="addressId"/>
+        <result property="clientId" column="clientId"/>
+        <result property="name" column="name"/>
+        <result property="phone" column="phone"/>
+        <result property="address" column="address"/>
+        <result property="deleteFlag" column="deleteFlag"/>
+        <result property="updateTime" column="updateTime"/>
+	</resultMap>
+	
+	<select id="getClientAddressById" resultMap="clientAddressResultMap" parameterType="java.lang.Integer">
+        SELECT * FROM address_info WHERE addressId = #{value}
+    </select>
+    
+	<insert id="insertClientAddress" parameterType="ClientAddress" useGeneratedKeys="true" keyProperty="addressId">
+		INSERT INTO address_info (
+    		addressId
+            <if test="clientId != null">,clientId</if>
+            <if test="name != null">,name</if>
+            <if test="phone != null">,phone</if>
+            <if test="address != null">,address</if>
+            <if test="deleteFlag != null">,deleteFlag</if>
+            <if test="updateTime != null">,updateTime</if>
+		)
+		VALUES
+		(
+		    #{addressId}
+            <if test="clientId != null">,#{clientId}</if>
+            <if test="name != null">,#{name}</if>
+            <if test="phone != null">,#{phone}</if>
+            <if test="address != null">,#{address}</if>
+            <if test="deleteFlag != null">,#{deleteFlag}</if>
+            <if test="updateTime != null">,#{updateTime}</if>
+		)
+	</insert>
+	
+	<update id="updateClientAddress" parameterType="ClientAddress">
+		UPDATE address_info
+		<set>
+            <if test="clientId != null">clientId = #{clientId},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="address != null">address = #{address},</if>
+            <if test="deleteFlag != null">deleteFlag = #{deleteFlag},</if>
+            <if test="updateTime != null">updateTime = #{updateTime},</if>
+		</set>
+		WHERE addressId = #{addressId}
+	</update>
+	
+	<delete id="deleteClientAddressById" parameterType="java.lang.Integer">
+		DELETE FROM address_info WHERE addressId = #{value}
+	</delete>
+	
+	<select id="getClientAddressList" resultMap="clientAddressResultMap" parameterType="ClientAddress">
+		SELECT A.* FROM address_info A
+		<where>
+            <if test="clientId != null">AND A.clientId = #{clientId}</if>
+            <if test="name != null">AND A.name like CONCAT('%',#{name},'%')</if>
+            <if test="phone != null">AND A.phone = #{phone}</if>
+            <if test="address != null">AND A.address like CONCAT('%',#{address},'%')</if>
+            <if test="deleteFlag != null">AND A.deleteFlag = #{deleteFlag}</if>
+            <if test="updateTime != null">AND A.updateTime = #{updateTime}</if>
+		</where>
+	</select>
+	
+	<select id="getClientAddressPageList" resultMap="clientAddressResultMap" parameterType="ClientAddressCondition">
+	    SELECT T1.* FROM address_info T1, 
+        (SELECT A.addressId FROM address_info A
+        <where>
+            <if test="clientAddress.clientId != null">AND A.clientId = #{clientAddress.clientId}</if>
+            <if test="clientAddress.name != null">AND A.name like CONCAT('%',#{clientAddress.name},'%')</if>
+            <if test="clientAddress.phone != null">AND A.phone = #{clientAddress.phone}</if>
+            <if test="clientAddress.address != null">AND A.address like CONCAT('%',#{clientAddress.address},'%')</if>
+            <if test="clientAddress.deleteFlag != null">AND A.deleteFlag = #{clientAddress.deleteFlag}</if>
+            <if test="clientAddress.updateTime != null">AND A.updateTime = #{clientAddress.updateTime}</if>
+        </where>
+        <if test="orderBys != null">
+          order by ${orderBys} 
+        </if>
+        <if test="limit != null">
+          limit #{limit},#{offset}
+        </if>
+        ) T2 WHERE T1.addressId = T2.addressId
+    </select>
+	
+	<select id="getClientAddressCount" resultType="java.lang.Integer" parameterType="ClientAddressCondition">
+		SELECT COUNT(*) FROM address_info A
+		<where>
+            <if test="clientAddress.clientId != null">AND A.clientId = #{clientAddress.clientId}</if>
+            <if test="clientAddress.name != null">AND A.name like CONCAT('%',#{clientAddress.name},'%')</if>
+            <if test="clientAddress.phone != null">AND A.phone = #{clientAddress.phone}</if>
+            <if test="clientAddress.address != null">AND A.address like CONCAT('%',#{clientAddress.address},'%')</if>
+            <if test="clientAddress.deleteFlag != null">AND A.deleteFlag = #{clientAddress.deleteFlag}</if>
+            <if test="clientAddress.updateTime != null">AND A.updateTime = #{clientAddress.updateTime}</if>
+		</where>
+	</select>
+	
+</mapper>

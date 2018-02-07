@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guoxin.module.system.dao.IUserDao">
+	
+	<!-- 二级缓存 
+    <cache eviction="LRU" type="org.mybatis.caches.redis.RedisCache" />
+    -->
+    
+	<resultMap id="userResultMap" type="Users">
+		<result property="userId" column="userId"/>
+		<result property="loginName" column="loginName"/>
+		<result property="password" column="password"/>
+		<result property="updateTime" column="updateTime"/>
+		<result property="deleteFlag" column="deleteFlag"/>
+	</resultMap>
+	
+	<select id="getUserById" resultMap="userResultMap" parameterType="java.lang.Integer">
+        SELECT * FROM users WHERE userId = #{value}
+    </select>
+    
+	<insert id="insertUser" parameterType="Users" useGeneratedKeys="true" keyProperty="userId">
+		INSERT INTO users (
+			userId 
+			<if test="loginName != null">,loginName</if>
+			<if test="password != null">,password</if>
+			<if test="updateTime != null">,updateTime</if>
+			<if test="deleteFlag != null">,deleteFlag</if>
+		)
+		VALUES
+		(
+			#{userId} 
+			<if test="loginName != null">,#{loginName}</if>
+			<if test="password != null">,#{password}</if>
+			<if test="updateTime != null">,#{updateTime}</if>
+			<if test="deleteFlag != null">,#{deleteFlag}</if>
+		)
+	</insert>
+	
+	<update id="updateUser" parameterType="Users">
+		UPDATE users
+		<set>
+			<if test="loginName != null">loginName = #{loginName},</if>
+			<if test="password != null">password = #{password},</if>
+			<if test="updateTime != null">updateTime = #{updateTime},</if>
+			<if test="deleteFlag != null">deleteFlag = #{deleteFlag},</if>
+		</set>
+		WHERE userId = #{userId}
+	</update>
+	
+	<delete id="deleteUserById" parameterType="java.lang.Integer">
+		DELETE FROM users WHERE userId = #{value}
+	</delete>
+	
+	<select id="getUserList" resultMap="userResultMap" parameterType="Users">
+		SELECT A.* FROM users A
+		<where>
+			<if test="loginName != null">AND A.loginName like '%${loginName}%'</if>
+			<if test="password != null">AND A.password like '%${password}%'</if>
+			<if test="updateTime != null">AND A.updateTime = #{updateTime}</if>
+			<if test="deleteFlag != null">AND A.deleteFlag = #{deleteFlag}</if>
+		</where>
+	</select>
+	
+	<select id="getUserPageList" resultMap="userResultMap" parameterType="UserCondition">
+        SELECT A.* FROM users A
+        <where>
+			<if test="user.loginName != null">AND A.loginName like '%${user.loginName}%'</if>
+			<if test="user.password != null">AND A.password like '%${user.password}%'</if>
+			<if test="user.updateTime != null">AND A.updateTime = #{user.updateTime}</if>
+			<if test="user.deleteFlag != null">AND A.deleteFlag = #{user.deleteFlag}</if>
+		</where>
+        <if test="orderBys != null">
+          order by ${orderBys} 
+        </if>
+        <if test="limit != null">
+          limit #{limit},#{offset}
+        </if>
+    </select>
+	
+	<select id="getUserCount" resultType="java.lang.Integer" parameterType="UserCondition">
+		SELECT COUNT(*) FROM users A
+		<where>
+			<if test="user.loginName != null">AND A.loginName like '%${user.loginName}%'</if>
+			<if test="user.password != null">AND A.password like '%${user.password}%'</if>
+			<if test="user.updateTime != null">AND A.updateTime = #{user.updateTime}</if>
+			<if test="user.deleteFlag != null">AND A.deleteFlag = #{user.deleteFlag}</if>
+		</where>
+	</select>
+	
+</mapper>

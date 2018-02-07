@@ -1,0 +1,52 @@
+.pagination {
+    font:normal 14px '微软雅黑','宋体';
+}
+        
+.pagination a {
+    text-decoration: none;
+}
+
+.pagination a.sp {
+    width: auto;
+    height: auto;
+}
+
+.pagination a, .pagination span {
+    /*display: block;*/
+    /*float: left;*/
+    padding: 6px 8px;
+    margin-right: 1px;
+	margin-bottom: 5px;
+	min-width:1em;
+	text-align:center;
+	width: auto;
+}
+
+.pagination .current {
+    background: #a18758;
+  	color: #FFF;
+}
+
+.pagination .current.prev, .pagination .current.next{
+	color: #a18758;
+	background: rgba(255,255,255,.0);
+}
+
+.pagination .prev{
+    color: #a18758;
+}
+
+.pagination .next{
+    color: #a18758;
+}
+
+.pagination .page_tt{
+	color: #a18758;
+	/*display: none;*/
+}
+
+.pagination label {vertical-align: baseline; margin-right: 0px;}
+
+.pagination .txt{width:50px; height: 30px; height: 16px; font-size: 14px; line-height: 14px; vertical-align: 1px; color: #000;}
+.pagination .btn_primary{ background:#a18758; border:none; color:#fff; cursor:pointer; vertical-align: 0px;}
+.pagination select {height: 22px; width:60px; display:inline-block; vertical-align: 1px;}

@@ -1,0 +1,801 @@
+.housekeeper-button, .housekeeper-button span {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox
+}
+
+.housekeeper-button {
+    position: relative;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 10rem;
+    height: 1.66667rem;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, .8)
+}
+
+.housekeeper-button span {
+    background-color: #004892;
+    width: 5rem;
+    height: 1.11111rem;
+    font-size: .5rem;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    color: #fff;
+    border-radius: 1.11111rem
+}
+
+.housekeeper .h-banner, .housekeeper .h-standard {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    background-repeat: no-repeat
+}
+
+.housekeeper .h-banner {
+    height: 14.72222rem;
+    padding-top: 1.08333rem;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background-image: url(../images/banner-bg.jpg);
+    background-size: 10.41667rem 9.09722rem;
+    background-position: center bottom
+}
+
+.housekeeper .h-banner-logo {
+    width: 2.91667rem;
+    height: 1.25rem;
+    background-image: url(../images/banner-logo.png);
+    background-size: 2.91667rem 1.25rem
+}
+
+.housekeeper .h-banner-title {
+    margin-top: .48611rem;
+    margin-bottom: .13889rem;
+    width: 3.75rem;
+    height: .41667rem;
+    background-image: url(../images/banner-title.png);
+    background-size: 3.75rem .41667rem;
+    background-repeat: no-repeat
+}
+
+.housekeeper .h-banner-subtitle {
+    font-size: .66667rem;
+    color: #333
+}
+
+.housekeeper .h-banner-content span, .housekeeper .h-banner-subtitle span {
+    color: #de900a
+}
+
+.housekeeper .h-banner-content {
+    margin-top: .19444rem;
+    padding-top: .11111rem;
+    padding-bottom: .11111rem;
+    line-height: .41667rem;
+    font-size: .33333rem;
+    border-top: 1px solid #aaa9a9;
+    border-bottom: 1px solid #aaa9a9
+}
+
+.housekeeper .h-standard {
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding-top: 1.11111rem;
+    font-size: .5rem;
+    height: 17.77778rem;
+    background-image: url(../images/standard-bg.jpg);
+    background-position: center 4.30556rem;
+    background-size: 10rem auto
+}
+
+.housekeeper .h-server, .housekeeper .h-standard-server {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal
+}
+
+.housekeeper .h-standard-title {
+    line-height: .66667rem;
+    text-align: center
+}
+
+.housekeeper .h-standard-subtitle {
+    font-size: .30556rem;
+    line-height: .44444rem;
+    text-align: center;
+    color: #565656
+}
+
+.housekeeper .h-standard-server {
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap
+}
+
+.housekeeper .h-standard-server-title {
+    margin-top: 8.05556rem;
+    width: 4.44444rem;
+    height: .72222rem;
+    background-color: #004892;
+    border-radius: .72222rem;
+    background-image: url(../images/standard-title.png);
+    background-position: center center;
+    background-size: 4.44444rem .72222rem
+}
+
+.housekeeper .h-standard-server-subtitle {
+    font-size: .25rem;
+    padding-top: .11111rem
+}
+
+.housekeeper .h-standard-items {
+    margin-top: .69444rem;
+    width: 9.02778rem;
+    height: 4.02778rem;
+    background-image: url(../images/h-standard-item.jpg);
+    background-size: 9.02778rem 4.02778rem
+}
+
+.housekeeper .h-server {
+    padding-top: 1.66667rem;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    padding-bottom: 11.11111rem;
+    background-image: url(../images/server-bg.jpg?v=20170327);
+    background-size: 9.125rem 10.27778rem;
+    background-repeat: no-repeat;
+    background-position: center bottom
+}
+
+.housekeeper .h-server-title {
+    font-size: .5rem;
+    line-height: .55556rem
+}
+
+.housekeeper .h-server-subtitle {
+    font-size: .41667rem;
+    line-height: .55556rem
+}
+
+.housekeeper .h-server-img {
+    width: 9.125rem;
+    height: 10.27778rem
+}
+
+.housekeeper .h-train {
+    margin-top: 1.43056rem;
+    min-height: 10.97222rem;
+    background-image: url(../images/train-bg.jpg);
+    background-size: 10rem auto;
+    background-position: center 3.33333rem;
+    background-repeat: no-repeat
+}
+
+.housekeeper .h-housekeeper, .housekeeper .h-insurance, .housekeeper .h-stand, .housekeeper .h-tool, .housekeeper .h-users {
+    background-repeat: no-repeat;
+    background-position: center bottom
+}
+
+.housekeeper .h-train-title {
+    font-size: .5rem;
+    text-align: center;
+    line-height: .66667rem
+}
+
+.housekeeper .h-train-subtitle {
+    color: #565656;
+    font-size: .33333rem;
+    line-height: .44444rem;
+    text-align: center;
+    padding-top: .33333rem
+}
+
+.housekeeper .h-tool {
+    height: 11.94444rem;
+    background-image: url(../images/tool-bg.jpg);
+    background-size: 10rem 8.65278rem
+}
+
+.housekeeper .h-tool-title {
+    text-align: center;
+    font-size: .5rem;
+    line-height: .68056rem
+}
+
+.housekeeper .h-tool-subtitle {
+    padding-top: .41667rem;
+    padding-bottom: .41667rem;
+    font-size: .33333rem;
+    color: #565656;
+    text-align: center;
+    line-height: .5rem
+}
+
+.housekeeper .h-housekeeper {
+    height: 10.76389rem;
+    background-size: 10rem auto;
+    background-image: url(../images/housekeeper-bg.jpg)
+}
+
+.housekeeper .h-housekeeper-title {
+    font-size: .55556rem;
+    padding-top: 1.29167rem;
+    padding-bottom: .20833rem;
+    text-align: center
+}
+
+.housekeeper .h-housekeeper-subtitle {
+    width: 4.05556rem;
+    height: .44444rem;
+    background-color: #004892;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-size: .27778rem;
+    color: #fff;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: .44444rem
+}
+
+.housekeeper .h-housekeeper-content {
+    padding-top: .33333rem;
+    text-align: center;
+    color: #565656;
+    font-size: .33333rem;
+    line-height: .5rem
+}
+
+.housekeeper .h-insurance-title, .housekeeper .h-stand-title {
+    padding-top: 1.11111rem;
+    padding-bottom: .41667rem;
+    text-align: center
+}
+
+.housekeeper .h-stand {
+    height: 11.5rem;
+    background-image: url(../images/stand-bg.jpg);
+    background-size: 4.86111rem 6.94444rem
+}
+
+.housekeeper .h-stand-title {
+    font-size: .5rem;
+    line-height: .69444rem
+}
+
+.housekeeper .h-stand-subtitle {
+    font-size: .33333rem;
+    line-height: .5rem;
+    color: #565656;
+    text-align: center
+}
+
+.housekeeper .h-insurance {
+    height: 10.94444rem;
+    background-image: url(../images/insurance-tri.png);
+    background-size: 6.80556rem 5.75rem
+}
+
+.housekeeper .h-insurance-title {
+    font-size: .5rem;
+    line-height: .69444rem
+}
+
+.housekeeper .h-insurance-title b {
+    font-size: .66667rem;
+    color: #1256a8
+}
+
+.housekeeper .h-insurance-title span {
+    font-size: .5rem
+}
+
+.housekeeper .h-insurance-subtitle {
+    font-size: .33333rem;
+    line-height: .5rem;
+    color: #565656;
+    text-align: center
+}
+
+.housekeeper .h-users {
+    height: 13.88889rem;
+    background-image: url(../images/users-bg.jpg);
+    background-size: 9.02778rem 8.33333rem
+}
+
+.housekeeper .h-high-end, .housekeeper .h-process, .housekeeper .h-promise {
+    background-position: center center;
+    background-repeat: no-repeat
+}
+
+.housekeeper .h-users-title {
+    text-align: center;
+    padding-top: 1.58333rem;
+    padding-bottom: .30556rem;
+    font-size: .5rem;
+    line-height: .69444rem
+}
+
+.housekeeper .h-users-title b {
+    font-size: .66667rem;
+    color: #1256a8
+}
+
+.housekeeper .h-users-subtitle {
+    font-size: .33333rem;
+    line-height: .44444rem;
+    color: #565656;
+    text-align: center
+}
+
+.housekeeper .h-high-end {
+    margin-top: .83333rem;
+    margin-bottom: .97222rem;
+    width: 10rem;
+    height: 9.58333rem;
+    background-image: url(../images/high-end-bg_v1.jpg);
+    background-size: 10rem 9.58333rem
+}
+
+.housekeeper .h-process {
+    margin: auto;
+    width: 9.02778rem;
+    height: 2.91667rem;
+    background-image: url(../images/process-bg.png);
+    background-size: 9.02778rem 2.91667rem
+}
+
+.housekeeper .h-promise {
+    margin-top: .86111rem;
+    height: 7.70833rem;
+    background-image: url(../images/promise-bg.jpg);
+    background-size: 10rem 7.70833rem
+}
+
+.housekeeper .h-declare {
+    min-height: 9.72222rem;
+    padding-left: .41667rem;
+    padding-right: .41667rem
+}
+
+.housekeeper .h-declare-title {
+    text-align: center;
+    font-size: .5rem;
+    padding-top: .83333rem;
+    padding-bottom: .52778rem
+}
+
+.housekeeper .h-declare-item {
+    padding-left: 1.25rem;
+    border-bottom: 1px dashed #565656;
+    color: #565656;
+    padding-top: .34722rem;
+    background-repeat: no-repeat;
+    background-position: .33333rem .33333rem;
+    background-size: .625rem .69444rem
+}
+
+.housekeeper .h-declare-item:nth-of-type(1) {
+    background-image: url(../images/declare-icon-1.png)
+}
+
+.housekeeper .h-declare-item:nth-of-type(2) {
+    background-image: url(../images/declare-icon-2.png)
+}
+
+.housekeeper .h-declare-item:nth-of-type(3) {
+    border-bottom: none;
+    background-image: url(../images/declare-icon-3.png)
+}
+
+.housekeeper .h-declare-item .title {
+    font-size: .33333rem;
+    line-height: .41667rem;
+    padding-bottom: .13889rem
+}
+
+.housekeeper .h-declare-item .content {
+    font-size: .25rem;
+    line-height: .41667rem;
+    padding-bottom: .20833rem
+}
+
+.housekeeper .h-footer {
+    padding-top: 2.08333rem;
+    min-height: 3.75rem;
+    background-image: url(../images/logo.jpg);
+    background-repeat: no-repeat;
+    background-size: 2.91667rem .76389rem;
+    background-position: center 1.08333rem
+}
+
+.housekeeper .h-footer .content {
+    font-size: .27778rem;
+    line-height: 1.5em;
+    color: #565656;
+    text-align: center
+}
+
+.red-packet {
+    position: fixed;
+    width: 2.38889rem;
+    height: 2.38889rem;
+    background-image: url(../images/red-packet.png);
+    background-size: 2.38889rem 2.38889rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    top: .13889rem;
+    left: .13889rem;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    -webkit-animation-name: shake;
+    animation-name: shake;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+    display: inline-block;
+    -webkit-transform-origin: center center 0;
+    -ms-transform-origin: center center 0;
+    transform-origin: center center 0
+}
+
+@-webkit-keyframes shake {
+    2% {
+        -webkit-transform: translate(3px, -6px) rotate(-2deg);
+        transform: translate(3px, -6px) rotate(-2deg)
+    }
+    4% {
+        -webkit-transform: translate(3px, 6px) rotate(4deg);
+        transform: translate(3px, 6px) rotate(4deg)
+    }
+    6% {
+        -webkit-transform: translate(6px, 6px) rotate(4deg);
+        transform: translate(6px, 6px) rotate(4deg)
+    }
+    8%, 86% {
+        -webkit-transform: translate(2.5px, 6px) rotate(2deg);
+        transform: translate(2.5px, 6px) rotate(2deg)
+    }
+    10% {
+        -webkit-transform: translate(3px, 2.5px) rotate(2deg);
+        transform: translate(3px, 2.5px) rotate(2deg)
+    }
+    12% {
+        -webkit-transform: translate(6px, 6px) rotate(2deg);
+        transform: translate(6px, 6px) rotate(2deg)
+    }
+    14% {
+        -webkit-transform: translate(3px, 3px) rotate(2deg);
+        transform: translate(3px, 3px) rotate(2deg)
+    }
+    16% {
+        -webkit-transform: translate(-6px, -3px) rotate(4deg);
+        transform: translate(-6px, -3px) rotate(4deg)
+    }
+    18% {
+        -webkit-transform: translate(3px, 3px) rotate(4deg);
+        transform: translate(3px, 3px) rotate(4deg)
+    }
+    20% {
+        -webkit-transform: translate(2.5px, 2.5px) rotate(4deg);
+        transform: translate(2.5px, 2.5px) rotate(4deg)
+    }
+    22% {
+        -webkit-transform: translate(3px, -6px) rotate(4deg);
+        transform: translate(3px, -6px) rotate(4deg)
+    }
+    24% {
+        -webkit-transform: translate(-6px, 6px) rotate(-2deg);
+        transform: translate(-6px, 6px) rotate(-2deg)
+    }
+    26% {
+        -webkit-transform: translate(6px, 3px) rotate(4deg);
+        transform: translate(6px, 3px) rotate(4deg)
+    }
+    28% {
+        -webkit-transform: translate(-3px, -3px) rotate(-2deg);
+        transform: translate(-3px, -3px) rotate(-2deg)
+    }
+    30%, 46% {
+        -webkit-transform: translate(6px, -3px) rotate(-2deg);
+        transform: translate(6px, -3px) rotate(-2deg)
+    }
+    32%, 60%, 68% {
+        -webkit-transform: translate(2.5px, -6px) rotate(4deg);
+        transform: translate(2.5px, -6px) rotate(4deg)
+    }
+    34% {
+        -webkit-transform: translate(2.5px, 2.5px) rotate(-2deg);
+        transform: translate(2.5px, 2.5px) rotate(-2deg)
+    }
+    36% {
+        -webkit-transform: translate(3px, -6px) rotate(2deg);
+        transform: translate(3px, -6px) rotate(2deg)
+    }
+    38%, 96% {
+        -webkit-transform: translate(2.5px, -3px) rotate(-2deg);
+        transform: translate(2.5px, -3px) rotate(-2deg)
+    }
+    40% {
+        -webkit-transform: translate(-3px, 2.5px) rotate(2deg);
+        transform: translate(-3px, 2.5px) rotate(2deg)
+    }
+    42%, 78% {
+        -webkit-transform: translate(-6px, 2.5px) rotate(2deg);
+        transform: translate(-6px, 2.5px) rotate(2deg)
+    }
+    44%, 50%, 54% {
+        -webkit-transform: translate(-6px, 6px) rotate(2deg);
+        transform: translate(-6px, 6px) rotate(2deg)
+    }
+    48% {
+        -webkit-transform: translate(2.5px, -3px) rotate(2deg);
+        transform: translate(2.5px, -3px) rotate(2deg)
+    }
+    52% {
+        -webkit-transform: translate(-3px, 6px) rotate(2deg);
+        transform: translate(-3px, 6px) rotate(2deg)
+    }
+    56%, 66% {
+        -webkit-transform: translate(3px, 2.5px) rotate(4deg);
+        transform: translate(3px, 2.5px) rotate(4deg)
+    }
+    58%, 70% {
+        -webkit-transform: translate(2.5px, 2.5px) rotate(2deg);
+        transform: translate(2.5px, 2.5px) rotate(2deg)
+    }
+    62%, 88% {
+        -webkit-transform: translate(-6px, 3px) rotate(4deg);
+        transform: translate(-6px, 3px) rotate(4deg)
+    }
+    64% {
+        -webkit-transform: translate(-6px, 6px) rotate(4deg);
+        transform: translate(-6px, 6px) rotate(4deg)
+    }
+    72% {
+        -webkit-transform: translate(-3px, -6px) rotate(4deg);
+        transform: translate(-3px, -6px) rotate(4deg)
+    }
+    74%, 76% {
+        -webkit-transform: translate(-6px, 2.5px) rotate(4deg);
+        transform: translate(-6px, 2.5px) rotate(4deg)
+    }
+    80%, 82% {
+        -webkit-transform: translate(-6px, 3px) rotate(-2deg);
+        transform: translate(-6px, 3px) rotate(-2deg)
+    }
+    84% {
+        -webkit-transform: translate(-3px, 3px) rotate(4deg);
+        transform: translate(-3px, 3px) rotate(4deg)
+    }
+    90% {
+        -webkit-transform: translate(-6px, -3px) rotate(-2deg);
+        transform: translate(-6px, -3px) rotate(-2deg)
+    }
+    92% {
+        -webkit-transform: translate(-6px, -6px) rotate(4deg);
+        transform: translate(-6px, -6px) rotate(4deg)
+    }
+    94% {
+        -webkit-transform: translate(3px, 3px) rotate(-2deg);
+        transform: translate(3px, 3px) rotate(-2deg)
+    }
+    98% {
+        -webkit-transform: translate(-6px, -6px) rotate(-2deg);
+        transform: translate(-6px, -6px) rotate(-2deg)
+    }
+    0%, 100% {
+        -webkit-transform: translate(0, 0) rotate(0);
+        transform: translate(0, 0) rotate(0)
+    }
+}
+
+@keyframes shake {
+    2% {
+        -webkit-transform: translate(3px, -6px) rotate(-2deg);
+        transform: translate(3px, -6px) rotate(-2deg)
+    }
+    4% {
+        -webkit-transform: translate(3px, 6px) rotate(4deg);
+        transform: translate(3px, 6px) rotate(4deg)
+    }
+    6% {
+        -webkit-transform: translate(6px, 6px) rotate(4deg);
+        transform: translate(6px, 6px) rotate(4deg)
+    }
+    8%, 86% {
+        -webkit-transform: translate(2.5px, 6px) rotate(2deg);
+        transform: translate(2.5px, 6px) rotate(2deg)
+    }
+    10% {
+        -webkit-transform: translate(3px, 2.5px) rotate(2deg);
+        transform: translate(3px, 2.5px) rotate(2deg)
+    }
+    12% {
+        -webkit-transform: translate(6px, 6px) rotate(2deg);
+        transform: translate(6px, 6px) rotate(2deg)
+    }
+    14% {
+        -webkit-transform: translate(3px, 3px) rotate(2deg);
+        transform: translate(3px, 3px) rotate(2deg)
+    }
+    16% {
+        -webkit-transform: translate(-6px, -3px) rotate(4deg);
+        transform: translate(-6px, -3px) rotate(4deg)
+    }
+    18% {
+        -webkit-transform: translate(3px, 3px) rotate(4deg);
+        transform: translate(3px, 3px) rotate(4deg)
+    }
+    20% {
+        -webkit-transform: translate(2.5px, 2.5px) rotate(4deg);
+        transform: translate(2.5px, 2.5px) rotate(4deg)
+    }
+    22% {
+        -webkit-transform: translate(3px, -6px) rotate(4deg);
+        transform: translate(3px, -6px) rotate(4deg)
+    }
+    24% {
+        -webkit-transform: translate(-6px, 6px) rotate(-2deg);
+        transform: translate(-6px, 6px) rotate(-2deg)
+    }
+    26% {
+        -webkit-transform: translate(6px, 3px) rotate(4deg);
+        transform: translate(6px, 3px) rotate(4deg)
+    }
+    28% {
+        -webkit-transform: translate(-3px, -3px) rotate(-2deg);
+        transform: translate(-3px, -3px) rotate(-2deg)
+    }
+    30%, 46% {
+        -webkit-transform: translate(6px, -3px) rotate(-2deg);
+        transform: translate(6px, -3px) rotate(-2deg)
+    }
+    32%, 60%, 68% {
+        -webkit-transform: translate(2.5px, -6px) rotate(4deg);
+        transform: translate(2.5px, -6px) rotate(4deg)
+    }
+    34% {
+        -webkit-transform: translate(2.5px, 2.5px) rotate(-2deg);
+        transform: translate(2.5px, 2.5px) rotate(-2deg)
+    }
+    36% {
+        -webkit-transform: translate(3px, -6px) rotate(2deg);
+        transform: translate(3px, -6px) rotate(2deg)
+    }
+    38%, 96% {
+        -webkit-transform: translate(2.5px, -3px) rotate(-2deg);
+        transform: translate(2.5px, -3px) rotate(-2deg)
+    }
+    40% {
+        -webkit-transform: translate(-3px, 2.5px) rotate(2deg);
+        transform: translate(-3px, 2.5px) rotate(2deg)
+    }
+    42%, 78% {
+        -webkit-transform: translate(-6px, 2.5px) rotate(2deg);
+        transform: translate(-6px, 2.5px) rotate(2deg)
+    }
+    44%, 50%, 54% {
+        -webkit-transform: translate(-6px, 6px) rotate(2deg);
+        transform: translate(-6px, 6px) rotate(2deg)
+    }
+    48% {
+        -webkit-transform: translate(2.5px, -3px) rotate(2deg);
+        transform: translate(2.5px, -3px) rotate(2deg)
+    }
+    52% {
+        -webkit-transform: translate(-3px, 6px) rotate(2deg);
+        transform: translate(-3px, 6px) rotate(2deg)
+    }
+    56%, 66% {
+        -webkit-transform: translate(3px, 2.5px) rotate(4deg);
+        transform: translate(3px, 2.5px) rotate(4deg)
+    }
+    58%, 70% {
+        -webkit-transform: translate(2.5px, 2.5px) rotate(2deg);
+        transform: translate(2.5px, 2.5px) rotate(2deg)
+    }
+    62%, 88% {
+        -webkit-transform: translate(-6px, 3px) rotate(4deg);
+        transform: translate(-6px, 3px) rotate(4deg)
+    }
+    64% {
+        -webkit-transform: translate(-6px, 6px) rotate(4deg);
+        transform: translate(-6px, 6px) rotate(4deg)
+    }
+    72% {
+        -webkit-transform: translate(-3px, -6px) rotate(4deg);
+        transform: translate(-3px, -6px) rotate(4deg)
+    }
+    74%, 76% {
+        -webkit-transform: translate(-6px, 2.5px) rotate(4deg);
+        transform: translate(-6px, 2.5px) rotate(4deg)
+    }
+    80%, 82% {
+        -webkit-transform: translate(-6px, 3px) rotate(-2deg);
+        transform: translate(-6px, 3px) rotate(-2deg)
+    }
+    84% {
+        -webkit-transform: translate(-3px, 3px) rotate(4deg);
+        transform: translate(-3px, 3px) rotate(4deg)
+    }
+    90% {
+        -webkit-transform: translate(-6px, -3px) rotate(-2deg);
+        transform: translate(-6px, -3px) rotate(-2deg)
+    }
+    92% {
+        -webkit-transform: translate(-6px, -6px) rotate(4deg);
+        transform: translate(-6px, -6px) rotate(4deg)
+    }
+    94% {
+        -webkit-transform: translate(3px, 3px) rotate(-2deg);
+        transform: translate(3px, 3px) rotate(-2deg)
+    }
+    98% {
+        -webkit-transform: translate(-6px, -6px) rotate(-2deg);
+        transform: translate(-6px, -6px) rotate(-2deg)
+    }
+    0%, 100% {
+        -webkit-transform: translate(0, 0) rotate(0);
+        transform: translate(0, 0) rotate(0)
+    }
+}

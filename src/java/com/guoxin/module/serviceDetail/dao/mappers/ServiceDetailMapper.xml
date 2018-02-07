@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guoxin.module.serviceDetail.dao.IServiceDetailDao">
+	
+	<resultMap id="serviceDetailResultMap" type="ServiceDetail">
+        <result property="detailId" column="detailId"/>
+        <result property="detailName" column="detailName"/>
+        <result property="updateTime" column="updateTime"/>
+        <result property="money" column="money"/>
+        <result property="describess" column="describess"/>
+        <result property="moneya" column="moneya"/>
+        <result property="moneyb" column="moneyb"/>
+        <result property="moneyc" column="moneyc"/>
+        <result property="moneyd" column="moneyd"/>
+        <result property="serviceId" column="serviceId"/>
+        <result property="serviceName" column="serviceName"/>
+	</resultMap>
+	
+	<select id="getServiceDetailById" resultMap="serviceDetailResultMap" parameterType="java.lang.Integer">
+        SELECT A.*,B.serviceName FROM service_detail A,service B WHERE A.detailId = #{value} AND A.serviceId = B.serviceId
+    </select>
+    
+	<insert id="insertServiceDetail" parameterType="ServiceDetail" useGeneratedKeys="true" keyProperty="detailId">
+		INSERT INTO service_detail (
+    		detailId
+            <if test="detailName != null">,detailName</if>
+            <if test="updateTime != null">,updateTime</if>
+            <if test="money != null">,money</if>
+            <if test="describes != null">,describes</if>
+            <if test="serviceId != null">,serviceId</if>
+            <if test="moneya != null">,moneya</if>
+            <if test="moneyb != null">,moneyb</if>
+            <if test="moneyc != null">,moneyc</if>
+            <if test="moneyd != null">,moneyd</if>
+            
+		)
+		VALUES
+		(
+		    #{detailId}
+            <if test="detailName != null">,#{detailName}</if>
+            <if test="updateTime != null">,#{updateTime}</if>
+            <if test="money != null">,#{money}</if>
+            <if test="describes != null">,#{describes}</if>
+            <if test="serviceId != null">,#{serviceId}</if>
+            <if test="moneya != null">,#{moneya}</if>
+            <if test="moneyb != null">,#{moneyb}</if>
+            <if test="moneyc != null">,#{moneyc}</if>
+            <if test="moneyd != null">,#{moneyd}</if>
+		)
+	</insert>
+	
+	<update id="updateServiceDetail" parameterType="ServiceDetail">
+		UPDATE service_detail
+		<set>
+            <if test="detailName != null">detailName = #{detailName},</if>
+            <if test="updateTime != null">updateTime = #{updateTime},</if>
+            <if test="money != null">money = #{money},</if>
+            <if test="describes != null">describes = #{describes},</if>
+            <if test="serviceId != null">serviceId = #{serviceId},</if>
+            <if test="moneya != null">moneya = #{moneya},</if>
+            <if test="moneyb != null">moneyb = #{moneyb},</if>
+            <if test="moneyc != null">moneyc = #{moneyc},</if>
+            <if test="moneyd != null">moneyd = #{moneyd},</if>
+		</set>
+		WHERE detailId = #{detailId}
+	</update>
+	
+	<delete id="deleteServiceDetailById" parameterType="java.lang.Integer">
+		DELETE FROM service_detail WHERE detailId = #{value}
+	</delete>
+	
+	<select id="getServiceDetailList" resultMap="serviceDetailResultMap" parameterType="ServiceDetail">
+		SELECT A.* FROM service_detail A
+		<where>
+            <if test="detailName != null">AND A.detailName like CONCAT('%',#{detailName},'%')</if>
+            <if test="updateTime != null">AND A.updateTime = #{updateTime}</if>
+            <if test="money != null">AND A.money = #{money}</if>
+            <if test="describes != null">AND A.describes like CONCAT('%',#{describes},'%')</if>
+            <if test="serviceId != null">AND A.serviceId = #{serviceId}</if>
+		</where>
+	</select>
+	
+	<select id="getServiceDetailPageList" resultMap="serviceDetailResultMap" parameterType="ServiceDetailCondition">
+	    SELECT T1.*,T2.serviceName FROM service_detail T1, 
+        (SELECT A.detailId,B.serviceName FROM service_detail A,service B
+        <where>
+        	A.serviceId = B.serviceId
+            <if test="serviceDetail.detailName != null">AND A.detailName like CONCAT('%',#{serviceDetail.detailName},'%')</if>
+            <if test="serviceDetail.updateTime != null">AND A.updateTime = #{serviceDetail.updateTime}</if>
+            <if test="serviceDetail.money != null">AND A.money = #{serviceDetail.money}</if>
+            <if test="serviceDetail.describes != null">AND A.describes like CONCAT('%',#{serviceDetail.describes},'%')</if>
+            <if test="serviceDetail.serviceId != null">AND A.serviceId = #{serviceDetail.serviceId}</if>
+        </where>
+        <if test="orderBys != null">
+          order by ${orderBys} 
+        </if>
+        <if test="limit != null">
+          limit #{limit},#{offset}
+        </if>
+        ) T2 WHERE T1.detailId = T2.detailId
+    </select>
+	
+	<select id="getServiceDetailCount" resultType="java.lang.Integer" parameterType="ServiceDetailCondition">
+		SELECT COUNT(*) FROM service_detail A
+		<where>
+            <if test="serviceDetail.detailName != null">AND A.detailName like CONCAT('%',#{serviceDetail.detailName},'%')</if>
+            <if test="serviceDetail.updateTime != null">AND A.updateTime = #{serviceDetail.updateTime}</if>
+            <if test="serviceDetail.money != null">AND A.money = #{serviceDetail.money}</if>
+            <if test="serviceDetail.describes != null">AND A.describes like CONCAT('%',#{serviceDetail.describes},'%')</if>
+            <if test="serviceDetail.serviceId != null">AND A.serviceId = #{serviceDetail.serviceId}</if>
+		</where>
+	</select>
+	
+</mapper>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guoxin.module.services.dao.IServicesDao">
+	
+	<resultMap id="servicesResultMap" type="Services">
+        <result property="serviceId" column="serviceId"/>
+        <result property="serviceName" column="serviceName"/>
+        <result property="describe" column="describe"/>
+        <result property="deleteFlag" column="deleteFlag"/>
+	</resultMap>
+	
+	<select id="getServicesById" resultMap="servicesResultMap" parameterType="java.lang.Integer">
+        SELECT * FROM service WHERE serviceId = #{value}
+    </select>
+    
+	<insert id="insertServices" parameterType="Services" useGeneratedKeys="true" keyProperty="serviceId">
+		INSERT INTO service (
+    		serviceId
+            <if test="serviceName != null">,serviceName</if>
+            <if test="describe != null">,describe</if>
+            <if test="deleteFlag != null">,deleteFlag</if>
+		)
+		VALUES
+		(
+		    #{serviceId}
+            <if test="serviceName != null">,#{serviceName}</if>
+            <if test="describe != null">,#{describe}</if>
+            <if test="deleteFlag != null">,#{deleteFlag}</if>
+		)
+	</insert>
+	
+	<update id="updateServices" parameterType="Services">
+		UPDATE service
+		<set>
+            <if test="serviceName != null">serviceName = #{serviceName},</if>
+            <if test="describe != null">describe = #{describe},</if>
+            <if test="deleteFlag != null">deleteFlag = #{deleteFlag},</if>
+		</set>
+		WHERE serviceId = #{serviceId}
+	</update>
+	
+	<delete id="deleteServicesById" parameterType="java.lang.Integer">
+		DELETE FROM service WHERE serviceId = #{value}
+	</delete>
+	
+	<select id="getServicesList" resultMap="servicesResultMap" parameterType="Services">
+		SELECT A.* FROM service A
+		<where>
+            <if test="serviceName != null">AND A.serviceName like CONCAT('%',#{serviceName},'%')</if>
+            <if test="describe != null">AND A.describe like CONCAT('%',#{describe},'%')</if>
+            <if test="deleteFlag != null">AND A.deleteFlag = #{deleteFlag}</if>
+		</where>
+	</select>
+	
+	<select id="getServicesPageList" resultMap="servicesResultMap" parameterType="ServicesCondition">
+	    SELECT T1.* FROM service T1, 
+        (SELECT A.serviceId FROM service A
+        <where>
+            <if test="services.serviceName != null">AND A.serviceName like CONCAT('%',#{services.serviceName},'%')</if>
+            <if test="services.describe != null">AND A.describe like CONCAT('%',#{services.describe},'%')</if>
+            <if test="services.deleteFlag != null">AND A.deleteFlag = #{services.deleteFlag}</if>
+        </where>
+        <if test="orderBys != null">
+          order by ${orderBys} 
+        </if>
+        <if test="limit != null">
+          limit #{limit},#{offset}
+        </if>
+        ) T2 WHERE T1.serviceId = T2.serviceId
+    </select>
+	
+	<select id="getServicesCount" resultType="java.lang.Integer" parameterType="ServicesCondition">
+		SELECT COUNT(*) FROM service A
+		<where>
+            <if test="services.serviceName != null">AND A.serviceName like CONCAT('%',#{services.serviceName},'%')</if>
+            <if test="services.describe != null">AND A.describe like CONCAT('%',#{services.describe},'%')</if>
+            <if test="services.deleteFlag != null">AND A.deleteFlag = #{services.deleteFlag}</if>
+		</where>
+	</select>
+	
+</mapper>

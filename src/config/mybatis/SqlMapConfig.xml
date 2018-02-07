@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+		<!-- 这个配置使全局的映射器启用或禁用缓存 -->
+		<setting name="cacheEnabled" value="true" />
+		<!-- 对于未知的SQL查询，允许返回不同的结果集以达到通用的效果 -->
+		<setting name="multipleResultSetsEnabled" value="true" />
+		<!-- 配置默认的执行器。SIMPLE 执行器没有什么特别之处。REUSE 执行器重用预处理语句。BATCH 执行器重用语句和批量更新 -->
+		<setting name="defaultExecutorType" value="REUSE" />
+		<!-- 全局启用或禁用延迟加载。当禁用时，所有关联对象都会即时加载。 -->
+		<setting name="lazyLoadingEnabled" value="false" />
+		<setting name="aggressiveLazyLoading" value="true" />
+		<!-- <setting name="enhancementEnabled" value="true"/> -->
+		<!-- 设置超时时间，它决定驱动等待一个数据库响应的时间。 -->
+		<setting name="defaultStatementTimeout" value="25000" />
+    </settings>
+    
+	<!-- 别名配置 -->
+	<typeAliases>
+		<package name="com.guoxin.module.system.entity" />
+		<package name="com.guoxin.module.system.condition" />
+		<package name="com.guoxin.module.order.entity"/>
+		<package name="com.guoxin.module.order.condition"/>
+		<package name="com.guoxin.module.ticket.entity"/>
+		<package name="com.guoxin.module.ticket.condition"/>
+		<package name="com.guoxin.module.clientInfo.entity"/>
+		<package name="com.guoxin.module.clientInfo.condition"/>
+		<package name="com.guoxin.module.clientAddress.entity"/>
+		<package name="com.guoxin.module.clientAddress.condition"/>
+		<package name="com.guoxin.module.anutInfo.entity"/>
+		<package name="com.guoxin.module.anutInfo.condition"/>
+		<package name="com.guoxin.module.advice.entity"/>
+		<package name="com.guoxin.module.advice.condition"/>
+		<package name="com.guoxin.module.services.entity"/>
+		<package name="com.guoxin.module.services.condition"/>
+		<package name="com.guoxin.module.serviceDetail.entity"/>
+		<package name="com.guoxin.module.serviceDetail.condition"/>
+	</typeAliases>
+
+	<!-- 指定映射器路径 -->
+	<mappers>
+		<mapper resource="com/guoxin/module/system/dao/mappers/UserMapper.xml" />
+		<mapper resource="com/guoxin/module/order/dao/mappers/OrderMapper.xml" />
+		<mapper resource="com/guoxin/module/ticket/dao/mappers/TicketMapper.xml" />
+		<mapper resource="com/guoxin/module/clientInfo/dao/mappers/ClientInfoMapper.xml" />
+		<mapper resource="com/guoxin/module/clientAddress/dao/mappers/ClientAddressMapper.xml" />
+		<mapper resource="com/guoxin/module/anutInfo/dao/mappers/AnutInfoMapper.xml" />
+		<mapper resource="com/guoxin/module/advice/dao/mappers/AdviceMapper.xml" />
+		<mapper resource="com/guoxin/module/services/dao/mappers/ServicesMapper.xml" />
+		<mapper resource="com/guoxin/module/serviceDetail/dao/mappers/ServiceDetailMapper.xml" />
+	</mappers>
+</configuration> 

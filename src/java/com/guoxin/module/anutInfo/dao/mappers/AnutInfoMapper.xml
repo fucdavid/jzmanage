@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guoxin.module.anutInfo.dao.IAnutInfoDao">
+	
+	<resultMap id="anutInfoResultMap" type="AnutInfo">
+        <result property="anutId" column="anutId"/>
+        <result property="anutName" column="anutName"/>
+        <result property="phone" column="phone"/>
+        <result property="address" column="address"/>
+        <result property="headImg" column="headImg"/>
+        <result property="state" column="state"/>
+        <result property="updateTime" column="updateTime"/>
+	</resultMap>
+	
+	<select id="getAnutInfoById" resultMap="anutInfoResultMap" parameterType="java.lang.Integer">
+        SELECT * FROM anut_info WHERE anutId = #{value}
+    </select>
+    
+	<insert id="insertAnutInfo" parameterType="AnutInfo" useGeneratedKeys="true" keyProperty="anutId">
+		INSERT INTO anut_info (
+    		anutId
+            <if test="anutName != null">,anutName</if>
+            <if test="phone != null">,phone</if>
+            <if test="address != null">,address</if>
+            <if test="headImg != null">,headImg</if>
+            <if test="state != null">,state</if>
+            <if test="updateTime != null">,updateTime</if>
+		)
+		VALUES
+		(
+		    #{anutId}
+            <if test="anutName != null">,#{anutName}</if>
+            <if test="phone != null">,#{phone}</if>
+            <if test="address != null">,#{address}</if>
+            <if test="headImg != null">,#{headImg}</if>
+            <if test="state != null">,#{state}</if>
+            <if test="updateTime != null">,#{updateTime}</if>
+		)
+	</insert>
+	
+	<update id="updateAnutInfo" parameterType="AnutInfo">
+		UPDATE anut_info
+		<set>
+            <if test="anutName != null">anutName = #{anutName},</if>
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="address != null">address = #{address},</if>
+            <if test="headImg != null">headImg = #{headImg},</if>
+            <if test="state != null">state = #{state},</if>
+            <if test="updateTime != null">updateTime = #{updateTime},</if>
+		</set>
+		WHERE anutId = #{anutId}
+	</update>
+	
+	<delete id="deleteAnutInfoById" parameterType="java.lang.Integer">
+		DELETE FROM anut_info WHERE anutId = #{value}
+	</delete>
+	
+	<select id="getAnutInfoList" resultMap="anutInfoResultMap" parameterType="AnutInfo">
+		SELECT A.* FROM anut_info A
+		<where>
+            <if test="anutName != null">AND A.anutName like CONCAT('%',#{anutName},'%')</if>
+            <if test="phone != null">AND A.phone like CONCAT('%',#{phone},'%')</if>
+            <if test="address != null">AND A.address like CONCAT('%',#{address},'%')</if>
+            <if test="headImg != null">AND A.headImg like CONCAT('%',#{headImg},'%')</if>
+            <if test="state != null">AND A.state = #{state}</if>
+            <if test="updateTime != null">AND A.updateTime = #{updateTime}</if>
+		</where>
+	</select>
+	
+	<select id="getAnutInfoPageList" resultMap="anutInfoResultMap" parameterType="AnutInfoCondition">
+	    SELECT T1.* FROM anut_info T1, 
+        (SELECT A.anutId FROM anut_info A
+        <where>
+            <if test="anutInfo.anutName != null">AND A.anutName like CONCAT('%',#{anutInfo.anutName},'%')</if>
+            <if test="anutInfo.phone != null">AND A.phone like CONCAT('%',#{anutInfo.phone},'%')</if>
+            <if test="anutInfo.address != null">AND A.address like CONCAT('%',#{anutInfo.address},'%')</if>
+            <if test="anutInfo.headImg != null">AND A.headImg like CONCAT('%',#{anutInfo.headImg},'%')</if>
+            <if test="anutInfo.state != null">AND A.state = #{anutInfo.state}</if>
+            <if test="anutInfo.updateTime != null">AND A.updateTime = #{anutInfo.updateTime}</if>
+        </where>
+        <if test="orderBys != null">
+          order by ${orderBys} 
+        </if>
+        <if test="limit != null">
+          limit #{limit},#{offset}
+        </if>
+        ) T2 WHERE T1.anutId = T2.anutId
+    </select>
+	
+	<select id="getAnutInfoCount" resultType="java.lang.Integer" parameterType="AnutInfoCondition">
+		SELECT COUNT(*) FROM anut_info A
+		<where>
+            <if test="anutInfo.anutName != null">AND A.anutName like CONCAT('%',#{anutInfo.anutName},'%')</if>
+            <if test="anutInfo.phone != null">AND A.phone like CONCAT('%',#{anutInfo.phone},'%')</if>
+            <if test="anutInfo.address != null">AND A.address like CONCAT('%',#{anutInfo.address},'%')</if>
+            <if test="anutInfo.headImg != null">AND A.headImg like CONCAT('%',#{anutInfo.headImg},'%')</if>
+            <if test="anutInfo.state != null">AND A.state = #{anutInfo.state}</if>
+            <if test="anutInfo.updateTime != null">AND A.updateTime = #{anutInfo.updateTime}</if>
+		</where>
+	</select>
+	
+</mapper>

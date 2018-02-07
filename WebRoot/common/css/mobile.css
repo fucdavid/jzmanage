@@ -1,0 +1,537 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside,
+canvas, details, embed, figure, figcaption, footer, header, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+html {
+    background: #f5f5f5;
+    -webkit-text-size-adjust: none;
+}
+
+body {
+    background: #f0f0f0;
+    font: 12px "Microsoft YaHei", Verdana, Arial, 'ËÎÌו';
+    max-width: 640px;
+    margin: 0 auto;
+    color: #333;
+    line-height: 1;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    min-height: 100%;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+form, input, p {
+    margin: 0;
+    padding: 0;
+}
+
+article, aside, details, figcaption, figure, footer, header, menu, nav, section {
+    display: block;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* base */
+a, a:visited {
+    text-decoration: none;
+    color: #fff;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.black {
+    color: #000;
+}
+
+.red {
+    color: #df006e !important;
+}
+
+.cRed {
+    color: #cc0000;
+}
+
+.orange {
+    color: #ff7535;
+}
+
+.c999 {
+    color: #999;
+}
+
+.c666 {
+    color: #666;
+}
+
+.c333 {
+    color: #333;
+}
+
+.clearleft {
+    clear: left;
+}
+
+img {
+    border: none;
+    -ms-interpolation-mode: bicubic;
+}
+
+.clearfix:after {
+    display: block;
+    content: "";
+    visibility: hidden;
+    height: 0;
+    clear: both;
+}
+
+.none {
+    display: none;
+}
+
+.wrap {
+    padding: 10px;
+}
+
+/*input[type="text"]*/
+input, button, select, textarea {
+    outline: none;
+}
+
+.input, .input-wrap, .input-group {
+    border: 1px solid #d7d7d7;
+    border-radius: 6px;
+    height: 40px;
+    display: block;
+    background: #fff;
+    width: 100%;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.input > *, .input-wrap > * {
+    display: inline-block;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+input[type="text"], input[type="tel"], input[type="password"] {
+    width: 100%;
+    border: none;
+    font-size: 14px;
+    text-indent: 10px;
+    color: #333;
+    border-radius: 6px;
+    height: 40px;
+}
+
+.input-wrap span {
+    min-width: 30%;
+    line-height: 40px;
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+}
+
+.input-wrap.active span {
+    color: #999;
+}
+
+.input-wrap span.pre {
+    border-right: 1px solid #d7d7d7;
+}
+
+.input-wrap span.append {
+    border-left: 1px solid #d7d7d7;
+}
+
+.input-group {
+    height: auto;
+    position: relative;
+}
+
+.input-group label {
+    display: block;
+    border-bottom: 1px solid #d7d7d7;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.input-group label:last-child {
+    border-bottom: none;
+}
+
+.input-wrap select {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: 0;
+}
+
+.input-wrap .icon {
+    position: absolute;
+    right: 7px;
+    top: 50%;
+    margin-top: -12px;
+}
+
+/*btn link*/
+.btn-link {
+    color: #339ee2 !important;
+}
+
+.btn {
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    border-radius: 6px;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.btn .loading {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(250, 250, 250, 0.3);
+}
+
+.btn .loading img {
+    vertical-align: middle;
+    width: 20px;
+}
+
+.btn.blue {
+    background: #339ee2;
+}
+
+.btn.orange {
+    background: #ff752b;
+}
+
+.btn.gray {
+    background: #ccc
+}
+
+.btn.white {
+    background: -webkit-linear-gradient(top, #fff, #f0f0f0);
+    border: 1px solid #ccc;
+    color: #666;
+    border-radius: 25px;
+}
+
+.btn .loading {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(250, 250, 250, 0.3);
+}
+
+.btn img {
+    vertical-align: middle;
+    width: 20px;
+}
+
+/*icon*/
+.icon {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background: url(../../images/pages/mobile/icon.png) no-repeat;
+    background-size: auto 24px;
+}
+
+.icon.success {
+    background-position: -89px 0px;
+    margin-bottom: -6px;
+    margin-right: 3px;
+}
+
+.icon.user {
+    background-position: -123px 0px;
+    margin-right: 3px;
+    vertical-align: middle;
+}
+
+.icon.arrow {
+    background-position: -155px 0px;
+}
+
+.icon.arrow.active {
+    -webkit-transform: rotate(90deg);
+}
+
+.icon.call {
+    background-position: -188px 0px;
+}
+
+.icon.location {
+    background-position: -221px 0px;
+}
+
+.icon.share {
+    background-position: -257px 0px;
+    width: 25px;
+}
+
+.icon.exclamation-mark {
+    background-position: -359px 0px;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.icon.home {
+    background-position: -397px 0px;
+}
+
+.icon.clock {
+    background-position: -435px 0px;
+}
+
+.icon.coffee {
+    background-position: -477px 0px;
+}
+
+.icon.tag {
+    background-position: -515px 0px;
+}
+
+.icon.cal {
+    background-position: -553px 0px;
+}
+
+.icon.logout {
+    background: none;
+    background-size: auto 22px;
+}
+
+.icon.power {
+    background-position: -664px 0px;
+}
+
+.icon.info {
+    background-position: -699px 0;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.icon.redinfo {
+    background-position: -733px 0;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.icon.bluehook {
+    background-position: -764px 0;
+}
+
+/*hkm start*/
+header {
+    height: 40px;
+    width: 100%;
+    background: #008cd7;
+    text-align: center;
+    position: relative;
+    line-height: 40px;
+    color: #fff;
+    font-size: 16px;
+}
+
+header .btns {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+header > a, header .btns > a {
+    height: 40px;
+    width: 36px;
+    display: inline-block;
+    background: url(../../images/pages/mobile/icon.png?v=1) no-repeat;
+    background-size: auto 24px;
+}
+
+header a.login {
+    background-position: 5px 8px;
+}
+
+header a.search {
+    background-position: -25px 8px;
+}
+
+header a.back {
+    background-position: -55px 8px;
+    position: absolute;
+    left: 0px;
+}
+
+header a.trash {
+    background-position: -285px 8px;
+}
+
+header a.menu {
+    background-position: -320px 8px;
+}
+
+header a.city {
+    font-size: 14px;
+    width: auto;
+    position: absolute;
+    left: 0px;
+    padding-left: 10px;
+    background: none;
+}
+
+header a.city i {
+    display: inline-block;
+    border-left: 9px solid transparent;
+    border-bottom: 9px solid #fff;
+    margin-left: 2px;
+}
+
+header a.city select {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: 0;
+}
+
+header a.hk-index {
+    background-position: -392px 8px;
+}
+
+header a.hk-home-btn {
+    background-position: -585px 8px;
+}
+
+header a.delete {
+    background-position: -286px 8px;
+}
+
+/*register*/
+article {
+    padding: 20px 10px;
+    color: #999;
+}
+
+.register p {
+    line-height: 16px;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.register h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.register h1 img {
+    width: 50%;
+    max-width: 340px;
+}
+
+.register .sendSMS {
+    display: block;
+}
+
+/*login*/
+.register p.jointlogin {
+    margin-bottom: 100px;
+    text-align: right;
+    line-height: 45px;
+}
+
+.jointlogin a {
+    display: inline-block;
+    /* background: url(../../images/pages/login-icon.png) no-repeat left top;*/
+    background-size: auto 40px;
+    width: 40px;
+    padding-top: 40px;
+    margin-right: 5px;
+    color: #999;
+}
+
+.jointlogin a.weibo {
+    background-position: 0 0;
+}
+
+.jointlogin a.qq {
+    background-position: -50px 0;
+}
+
+.jointlogin a.weixin {
+    background-position: -95px 0;
+}
+
+.jointlogin a.qzone {
+    background-position: -139px 0;
+}
+
+.jointlogin a.pquan {
+    background-position: -185px 0;
+}
+
+.message-wrap{
+    width: 100%;
+    position: absolute;
+    top: 50px;
+    display: none;
+}
+.message-box{
+    height: 40px;
+    line-height: 36px;
+    background: #333333;
+    opacity: 0.9;
+    color: #fff;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box; /* Firefox */
+    -webkit-box-sizing: border-box; /* Safari */
+    border-radius: 6px;
+    padding: 0 10px;
+    margin:0 12px;
+}
